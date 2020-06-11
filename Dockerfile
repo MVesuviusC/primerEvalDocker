@@ -28,7 +28,8 @@ RUN apt-get update -y && \
     pandoc \
     emacs \
     htop \
-    xvfb
+    xvfb \
+    imagemagick
 
 ### get blast
 ARG BLAST_version=2.10.0
@@ -55,17 +56,17 @@ RUN wget -q https://software-ab.informatik.uni-tuebingen.de/download/dendroscope
      rm Dendroscope_unix_${DEND_version}.sh dendroInstallInput.txt
 
 ### get imageMagick
-ARG IM_version=7.0.10-18
+#ARG IM_version=7.0.10-18
 
-RUN wget -q https://imagemagick.org/download/releases/ImageMagick-${IM_version}.tar.gz && \
-     tar -zxf ImageMagick-${IM_version}.tar.gz && \
-     cd ImageMagick-${IM_version} && \
-     ./configure && \
-     make && \
-     make install && \
-     ldconfig /usr/local/lib && \
-     cd ../ && \
-     rm ImageMagick-${IM_version}.tar.gz
+#RUN wget -q https://imagemagick.org/download/releases/ImageMagick-${IM_version}.tar.gz && \
+#     tar -zxf ImageMagick-${IM_version}.tar.gz && \
+#     cd ImageMagick-${IM_version} && \
+#     ./configure && \
+#     make && \
+#     make install && \
+#     ldconfig /usr/local/lib && \
+#     cd ../ && \
+#     rm ImageMagick-${IM_version}.tar.gz
 
 
 #####################
@@ -123,4 +124,4 @@ RUN chmod 777 setupDatabases.sh
 # Put a file with examples of how to run the program and example input
 COPY Examples.txt Examples.txt
 COPY mam16SPrimerInput.txt mam16SPrimerInput.txt
-
+RUN echo "alias ls='ls --color=auto'" >> ~/.bashrc
