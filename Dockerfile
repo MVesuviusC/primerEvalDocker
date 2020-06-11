@@ -27,7 +27,8 @@ RUN apt-get update -y && \
     libxml2-dev \
     pandoc \
     emacs \
-    htop
+    htop \
+    xvfb
 
 ### get blast
 ARG BLAST_version=2.10.0
@@ -54,7 +55,7 @@ RUN wget -q https://software-ab.informatik.uni-tuebingen.de/download/dendroscope
      rm Dendroscope_unix_${DEND_version}.sh dendroInstallInput.txt
 
 ### get imageMagick
-ARG IM_version=7.0.9-27
+ARG IM_version=7.0.10-18
 
 RUN wget -q https://imagemagick.org/download/releases/ImageMagick-${IM_version}.tar.gz && \
      tar -zxf ImageMagick-${IM_version}.tar.gz && \
@@ -74,9 +75,9 @@ RUN R -e 'install.packages(c("knitrBootstrap", "gridExtra", "ggwordcloud"), depe
 
 
 ### get MVesuviusC stuff from github
-ARG PE_version=v0.1.1
+ARG PE_version=v0.1.4
 ARG GT_version=V2.2.2
-ARG LPBA_version=v0.1.1
+ARG LPBA_version=v0.1.4
 
 RUN wget -q https://github.com/MVesuviusC/getTaxa/archive/${GT_version}.zip && \
     unzip ${GT_version}.zip && \
