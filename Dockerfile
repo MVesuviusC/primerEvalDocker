@@ -55,20 +55,6 @@ RUN wget -q https://software-ab.informatik.uni-tuebingen.de/download/dendroscope
      ./Dendroscope_unix_${DEND_version}.sh < dendroInstallInput.txt && \
      rm Dendroscope_unix_${DEND_version}.sh dendroInstallInput.txt
 
-### get imageMagick
-#ARG IM_version=7.0.10-18
-
-#RUN wget -q https://imagemagick.org/download/releases/ImageMagick-${IM_version}.tar.gz && \
-#     tar -zxf ImageMagick-${IM_version}.tar.gz && \
-#     cd ImageMagick-${IM_version} && \
-#     ./configure && \
-#     make && \
-#     make install && \
-#     ldconfig /usr/local/lib && \
-#     cd ../ && \
-#     rm ImageMagick-${IM_version}.tar.gz
-
-
 #####################
 ### Install R packages
 RUN R -e 'install.packages("tidyverse", dependencies = TRUE, quiet = TRUE, Ncpus = 16)'
@@ -76,8 +62,8 @@ RUN R -e 'install.packages(c("knitrBootstrap", "gridExtra", "ggwordcloud"), depe
 
 
 ### get MVesuviusC stuff from github
-ARG PE_version=v0.1.4
-ARG GT_version=V2.2.2
+ARG PE_version=v0.2.0
+ARG GT_version=v3.0.0
 ARG LPBA_version=v0.1.4
 
 RUN wget -q https://github.com/MVesuviusC/getTaxa/archive/${GT_version}.zip && \
