@@ -81,7 +81,8 @@ WORKDIR /home/runDir
 RUN wget -q https://github.com/MVesuviusC/primerEvaluation/archive/${PE_version}.zip && \
     unzip ${PE_version}.zip && \
     rm ${PE_version}.zip && \
-    mv primerEvaluation*/* .
+    mv primerEvaluation*/* . && \
+    rmdir primerEvaluation*
 	    
 ## install needed perl libs
 RUN cpanm DBD::SQLite
